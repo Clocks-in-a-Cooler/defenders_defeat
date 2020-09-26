@@ -20,16 +20,20 @@ class Camera {
             "mousemove": mouse_move.bind(this),
             "wheel"    : wheel.bind(this),
         };
-        this.last_tile = null;
+        this.last_tile = new Vector(-1, -1);
     }
     
-    update(lapse) {
-        return this;
-    }
-    
-    rescale(factor) {
+    rescale(factor, center) {
+        if (center) {
+            var screen_coords = this.get_screen_coords(center);
+        }
+        
         this.scale = this.scale * factor;
         this.size  = (new Vector(canvas.width, canvas.height).times(1 / this.scale));
+        
+        if (center) {
+            this.top_left = center.minus(screen_coords.times(1 / this.scale));
+        }
     }
     
     translate(dist) {
@@ -57,8 +61,11 @@ class Camera {
                     case "east":
                     case "north":
                     case "south":
-                    case "entrance":
                         this.cxt.fillStyle = "salmon";
+                        this.cxt.fillRect(screen_coords.x, screen_coords.y, this.scale, this.scale);
+                        break;
+                    case "entrance":
+                        this.cxt.fillStyle = "indianred";
                         this.cxt.fillRect(screen_coords.x, screen_coords.y, this.scale, this.scale);
                         break;
                     case "exit":
@@ -104,12 +111,10 @@ class Camera {
 // we bind these in the constructor
 function mouse_down(evt) {
     this.clicking = true;
-    console.log("mouse down!");
 }
 
 function mouse_up(evt) {
     this.clicking = false;
-    console.log("mouse up!");
 }
 
 function mouse_move(evt) {
@@ -117,14 +122,18 @@ function mouse_move(evt) {
         this.translate(new Vector(evt.movementX, evt.movementY).times(-1 / this.scale));
     } else {
         // update the information in the side panel, if the mouse has moved to another tile
+        var new_tile = this.get_map_coords(new Vector(evt.offsetX, evt.offsetY)).apply(Math.floor);
+        if (!new_tile.matches(this.last_tile)) {
+            // display tile information, if there is any. for now, just display the coordinates.
+            document.getElementById("side-panel").innerHTML = "hovering over (" + new_tile.x + ", " + new_tile.y + ")";
+            this.last_tile = new_tile;
+        }
     }
 }
 
 function wheel(evt) {
-    // scroll
-    
     //find scroll direction. thanks, Stack Overflow
     var direction = Math.sign(evt.wheelDelta || (-1 * evt.deltaY)) * -1;
     
-    this.rescale(1 - (direction * 0.01));
+    this.rescale(1 - (direction * 0.05), this.get_map_coords(new Vector(evt.offsetX, evt.offsetY)));
 }

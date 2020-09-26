@@ -18,4 +18,8 @@ class Vector {
     apply(func) {
         return new Vector(func(this.x), func(this.y));
     }
+    
+    matches(other) {
+        return this.x == other.x && this.y == other.y;
+    }
 }
