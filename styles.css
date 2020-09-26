@@ -1,0 +1,34 @@
+html, body {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    margin: 0; border: 0; padding: 0;
+}
+
+div {
+    position: absolute;
+    padding: 0; border: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+
+div#wrapper {
+    width: 727px; height: 575px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 575px; height: 575px;
+    margin: 0; border: 0;
+    border-right: 1px solid black;
+}
+
+div#side-panel {
+    position: absolute;
+    top: 0; left: 0;
+    width: 150px; height: 575px;
+    margin: 0; border: 0;
+    margin-left: 577px;
+}

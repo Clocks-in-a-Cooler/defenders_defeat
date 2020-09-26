@@ -1,0 +1,21 @@
+-[ ] menus!
+    -[ ] main
+    -[ ] level select
+    -[ ] pause
+    -[ ] level complete/failure
+-[ ] unit building
+    -[ ] budget?
+    -[ ] tech tree?
+    -[ ] unit cap?
+    -[ ] can destroy towers?
+-[ ] level difficulty
+    -[ ] different tower types?
+    -[ ] a crude tower-building ai?
+-[ ] miscellaneous
+    -[ ] unit builder/selector
+    -[ ] camera zoom/panning
+        -[ ] scroll wheel to zoom
+        -[ ] click and drag to pan
+        -[ ] hover over a tower to see its stats
+    -[ ] rewards for destroying towers?
+    -[ ] rewards for completing level with extra troops

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Defender's Defeat</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <canvas></canvas>
+            <div id="side-panel"></div>
+        </div>
+        <script src="vector.js"></script>
+        <script src="map.js"></script>
+        <script src="camera.js"></script>
+        <script>
+            const map    = new Map(TEST_MAP);
+            const canvas = document.querySelector("canvas");
+            canvas.width = canvas.height = 575;
+            const camera = new Camera(canvas.getContext("2d"), map);
+            
+            camera.register_event_handlers();
+            
+            // for testing only
+            function animate() {
+                camera.draw();
+                requestAnimationFrame(animate);
+            }
+            
+            requestAnimationFrame(animate);
+            /*
+            // for sending keyboard events to the canvas
+            function handler(evt) {
+                console.log(evt.code);
+                console.log("received a key event");
+            }
+            
+            var elt = document.querySelector("canvas");
+            elt.setAttribute("tabindex", 0);
+            elt.focus();
+            elt.addEventListener("keydown", handler);
+            */
+        </script>
+    </body>
+</html>
