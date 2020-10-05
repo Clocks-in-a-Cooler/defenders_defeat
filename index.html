@@ -14,7 +14,9 @@
         <script src="map.js"></script>
         <script src="camera.js"></script>
         <script src="entity.js"></script>
+        <script src="bullet.js"></script>
         <script src="unit.js"></script>
+        <script src="tower.js"></script>
         <script>
             const map    = new Map(TEST_MAP);
             const canvas = document.querySelector("canvas");
@@ -24,6 +26,7 @@
             camera.register_event_handlers();
             
             // for testing only
+            // replace with an actual engine!
             function animate() {
                 map.update(50);
                 camera.draw();
@@ -43,6 +46,12 @@
             elt.focus();
             elt.addEventListener("keydown", handler);
             */
+            
+            function test_tower() {
+                var t = new Tower(new Vector(39, 3), map);
+                map.entities.push(t);
+                map.entities.push(new Unit(map));
+            }
         </script>
     </body>
 </html>

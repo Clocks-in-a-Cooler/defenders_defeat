@@ -9,8 +9,9 @@
 -[ ] game content
     -[ ] levels
     -[ ] units
-        -[ ] basic ground unit
+        -[x] basic ground unit
         -[ ] basic air unit
+        -[x] collision detection with bullet
         * ground units should be stronger to balance air units faster movement and bypassing defenses
         -[ ] unit building
             -[ ] budget?
@@ -18,7 +19,7 @@
             -[ ] unit cap?
             -[ ] can destroy towers?
     -[ ] towers
-        -[ ] basic tower (targets both air and ground)
+        -[x] basic tower (targets both air and ground)
         * air-targeting towers should focus more on accuracy and shots/sec, since air units are faster and harder to hit but weaker
         * ground-targeting towers should focus more on damage/shot, since ground units are slower but stronger and follow the path
         -[ ] bullets

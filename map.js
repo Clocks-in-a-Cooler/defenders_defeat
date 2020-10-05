@@ -72,10 +72,6 @@ class Map {
         
         return this.grid[pos.y][pos.x] || "blank";
     }
-    
-    place_tower(pos, tower) {
-        
-    }
 }
 
 // tradition: using ASCII to represent the map

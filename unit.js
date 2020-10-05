@@ -1,8 +1,11 @@
 class Unit extends Entity {
+    // base class for all units. not actually supposed to be used
     constructor(map) {
         super(map.start_pos.plus(new Vector(0.25, 0.25)), new Vector(0.5, 0.5), 0, map);
         this.health = this.max_health;
         this.facing = map.start_direction; // possible values: "south", "north", "east", "west" (odd even odd even)
+        
+        this.orientation = this.get_orientation();
         
         this.colour = "dodgerblue"; // coloured for your convenience!
     }
@@ -48,7 +51,8 @@ class Unit extends Entity {
         // check if the unit is on a new tile
         
         var new_direction = this.map.tile_at(this.pos);
-        this.facing = new_direction == "entrance" ? this.facing : new_direction;
+        this.facing       = new_direction == "entrance" ? this.facing : new_direction;
+        this.orientation  = this.get_orientation();
     }
     
     draw(camera) {
@@ -57,6 +61,23 @@ class Unit extends Entity {
     
     collision(other) {
         // we know for sure that it's going to be a bullet, so...
+        this.health -= other.damage;
+        this.active  = this.health > 0;
+        
+        other.active = false;
+    }
+    
+    get_orientation() {
+        switch (this.facing) {
+            case "south":
+                return Math.PI / 2;
+            case "north":
+                return 3 * Math.PI / 2;
+            case "east":
+                return 0;
+            case "west":
+                return Math.PI;
+        }
     }
     
     check_health() {

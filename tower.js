@@ -2,7 +2,7 @@ class Tower extends Entity {
     constructor(position, map) {
         // to recap: pos(ition), size, orientation, map
         // the tower should start off facing up, so -90 degrees or PI / 2 radians
-        super(position.plus(new Vector(0.1, 0.1), new Vector(0.8, 0.8), -Math.PI / 2, map);
+        super(position.plus(new Vector(0.1, 0.1)), new Vector(0.8, 0.8), -Math.PI / 2, map);
         
         this.last_fired = 0;
         this.target     = null;
@@ -15,7 +15,16 @@ class Tower extends Entity {
             -[x] choose a target, if there isn't any
             -[x] fire, if last_fired > cooldown
         */
-        if (this.target != null && !target.active) {
+        
+        /*
+            tower forgets target if:
+            - target is dead OR
+            - target is out of range
+        */
+        if (this.target != null && (
+            !this.target.active || // dead, like me
+            this.get_center().hypot(this.target.get_center()) > this.range // out of range, like my wifi router
+        )) {
             this.target = null;
         }
         
@@ -27,7 +36,8 @@ class Tower extends Entity {
         
         this.last_fired += lapse;
         
-        if (this.last_fired >= this.cooldown) {
+        if (this.last_fired >= this.cooldown && this.target != null) {
+            this.orient();
             this.fire();
             this.last_fired = 0;
         }
@@ -72,7 +82,8 @@ class Tower extends Entity {
             this.orientation, // angle
             this.map, // map
             Unit, // targetable
-            "firebrick" // colour
+            "firebrick", // colour
+            3 // damage
         ));
     }
     

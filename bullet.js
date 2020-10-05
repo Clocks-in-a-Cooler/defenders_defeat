@@ -1,6 +1,6 @@
 class Bullet extends Entity {
     // to make a new type of bullet, just subclass this one!
-    constructor(pos, angle, map, targetable, colour = "darkorange") {
+    constructor(pos, angle, map, targetable, colour = "darkorange", damage = 4) {
         super(pos, new Vector(0.25, 0.25), angle, map);
         
         this.motion = new Vector(Math.cos(angle), Math.sin(angle));
@@ -13,11 +13,9 @@ class Bullet extends Entity {
         this.pos = this.pos.plus(this.motion.times(lapse * this.speed));
 
         // check for collisions
-        var targets = this.check_collisions.filter((entity) => {
+        this.check_collisions((entity) => {
             return entity instanceof this.targetable && entity.active;
         });
-
-        targets[0].collision(this);
     }
 
     // no need to override Entity.collision(other)
