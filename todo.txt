@@ -3,19 +3,32 @@
     -[ ] level select
     -[ ] pause
     -[ ] level complete/failure
--[ ] unit building
-    -[ ] budget?
-    -[ ] tech tree?
-    -[ ] unit cap?
-    -[ ] can destroy towers?
 -[ ] level difficulty
     -[ ] different tower types?
     -[ ] a crude tower-building ai?
+-[ ] game content
+    -[ ] levels
+    -[ ] units
+        -[ ] basic ground unit
+        -[ ] basic air unit
+        * ground units should be stronger to balance air units faster movement and bypassing defenses
+        -[ ] unit building
+            -[ ] budget?
+            -[ ] tech tree?
+            -[ ] unit cap?
+            -[ ] can destroy towers?
+    -[ ] towers
+        -[ ] basic tower (targets both air and ground)
+        * air-targeting towers should focus more on accuracy and shots/sec, since air units are faster and harder to hit but weaker
+        * ground-targeting towers should focus more on damage/shot, since ground units are slower but stronger and follow the path
+        -[ ] bullets
+            -[ ] laser beams?
+            -[ ] different bullet types?
 -[ ] miscellaneous
     -[ ] unit builder/selector
-    -[ ] camera zoom/panning
-        -[ ] scroll wheel to zoom
-        -[ ] click and drag to pan
-        -[ ] hover over a tower to see its stats
+    -[x] camera zoom/panning
+        -[x] scroll wheel to zoom
+        -[x] click and drag to pan
+        -[x] hover over a tower to see its stats
     -[ ] rewards for destroying towers?
     -[ ] rewards for completing level with extra troops

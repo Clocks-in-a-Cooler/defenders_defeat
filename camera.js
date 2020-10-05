@@ -29,6 +29,7 @@ class Camera {
         }
         
         this.scale = this.scale * factor;
+        this.scale = Math.max(5, Math.min(this.scale, 100)); // clamp the scale so that the player doesn't zoom in or out too much
         this.size  = (new Vector(canvas.width, canvas.height).times(1 / this.scale));
         
         if (center) {
@@ -45,7 +46,7 @@ class Camera {
             to draw:
             -[x] clear the screen
             -[x] get all the tiles that are in view, draw them
-            -[ ] get all the entities in view, draw them
+            -[x] get all the entities in view, draw them
         */
         
         this.cxt.clearRect(0, 0, this.cxt.canvas.width, this.cxt.canvas.height);
@@ -79,6 +80,7 @@ class Camera {
         this.map.entities.forEach(entity => {
             if (entity.collides(new Entity(this.top_left, this.size, 0))) {
                 // draw
+                entity.draw(this);
             }
         });
     }

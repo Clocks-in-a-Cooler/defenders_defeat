@@ -13,6 +13,8 @@
         <script src="vector.js"></script>
         <script src="map.js"></script>
         <script src="camera.js"></script>
+        <script src="entity.js"></script>
+        <script src="unit.js"></script>
         <script>
             const map    = new Map(TEST_MAP);
             const canvas = document.querySelector("canvas");
@@ -23,6 +25,7 @@
             
             // for testing only
             function animate() {
+                map.update(50);
                 camera.draw();
                 requestAnimationFrame(animate);
             }

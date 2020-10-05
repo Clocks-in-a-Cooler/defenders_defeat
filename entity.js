@@ -1,24 +1,26 @@
 class Entity {
-    constructor(pos, size, orientation) {
+    constructor(pos, size, orientation, map) {
         this.pos         = pos;
         this.size        = size;
         this.orientation = orientation; // used for drawing
         this.active      = true;
+        this.map         = map;
+        this.colour      = "black";
     }
-    
+
     update(lapse) {
         // override in child classes
     }
-    
-    check_collisions(map) {
-        map.entities.forEach(other => {
-            if (other === this) continue;
-            if (this.collides(other)) {
+
+    check_collisions(test = () => true) {
+        this.map.entities.forEach(other => {
+            if (other === this) return;
+            if (this.collides(other) && test(other)) {
                 other.collision(this);
             }
         });
     }
-    
+
     collides(other) {
         return (
             other.pos.x < this.pos.x + this.size.x &&
@@ -27,12 +29,26 @@ class Entity {
             other.pos.y + other.size.y > this.pos.y
         );
     }
-    
+
     collision(other) {
         // don't call other.collision()
-        
+
         // override in child classes, depending on what it is
-        
+
         this.active = false;
+    }
+
+    get_center() {
+        return this.pos.plus(this.size.times(0.5));
+    }
+
+    draw(camera) {
+        // override in child classes
+        
+        // draw a rectangle. yeah, boring. i know... i know...
+        var screen_coords = camera.get_screen_coords(this.pos);
+
+        camera.cxt.fillStyle = this.colour;
+        camera.cxt.fillRect(screen_coords.x, screen_coords.y, this.size.x * camera.scale, this.size.y * camera.scale);
     }
 }
