@@ -21,6 +21,7 @@ class Camera {
             "wheel"    : wheel.bind(this),
         };
         this.last_tile = new Vector(-1, -1);
+        this.spotlight = null;
     }
     
     rescale(factor, center) {
@@ -83,6 +84,20 @@ class Camera {
                 entity.draw(this);
             }
         });
+        
+        if (this.spotlight != null) {
+            // draw a circle to show the range
+            var screen_coords = this.get_screen_coords(this.spotlight.get_center());
+            this.cxt.save();
+            this.cxt.strokeStyle = "gold";
+            this.cxt.setLineDash([20, 10]);
+            this.cxt.lineWidth = 3;
+            this.cxt.beginPath();
+            this.cxt.arc(screen_coords.x, screen_coords.y, this.spotlight.range * this.scale, 0, Math.PI * 2);
+            this.cxt.closePath();
+            this.cxt.stroke();
+            this.cxt.restore();
+        }
     }
     
     get_screen_coords(pos) {
@@ -127,8 +142,11 @@ function mouse_move(evt) {
         var new_tile = this.get_map_coords(new Vector(evt.offsetX, evt.offsetY)).apply(Math.floor);
         if (!new_tile.matches(this.last_tile)) {
             // display tile information, if there is any. for now, just display the coordinates.
+            this.spotlight = map.entity_at(new_tile);
+            display_info(this.spotlight);
+            /*
             document.getElementById("side-panel").innerHTML = "hovering over (" + new_tile.x + ", " + new_tile.y + ")";
-            this.last_tile = new_tile;
+            this.last_tile = new_tile; */
         }
     }
 }
@@ -138,4 +156,17 @@ function wheel(evt) {
     var direction = Math.sign(evt.wheelDelta || (-1 * evt.deltaY)) * -1;
     
     this.rescale(1 - (direction * 0.05), this.get_map_coords(new Vector(evt.offsetX, evt.offsetY)));
+}
+
+function display_info(entity) {
+    var side_panel = document.getElementById("side-panel");
+    if (!entity || !entity.range) {
+        side_panel.innerHTML = "";
+        return;
+    }
+    
+    // it's going to be a tower, for sure
+    side_panel.innerHTML = "fire rate: " + 1000 / entity.cooldown + " shots/sec" + "<br />" +
+        "damage: " + entity.damage + "<br />" +
+        "range: " + entity.range + " tiles";
 }

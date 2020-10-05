@@ -55,7 +55,7 @@ class Map {
     
     entity_at(pos) {
         var entities = this.entities.filter(entity => {
-            return entity.collides(new Entity(pos, new Vector(0, 0), 0));
+            return entity.collides(new Entity(pos, new Vector(1, 1), 0, this));
         });
         
         if (entities.length > 0) {

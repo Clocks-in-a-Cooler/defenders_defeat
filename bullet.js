@@ -1,7 +1,7 @@
 class Bullet extends Entity {
     // to make a new type of bullet, just subclass this one!
     constructor(pos, angle, map, targetable, colour = "darkorange", damage = 4) {
-        super(pos, new Vector(0.25, 0.25), angle, map);
+        super(pos.minus(new Vector(0.125, 0.125)), new Vector(0.25, 0.25), angle, map);
         
         this.colour = colour;
         this.motion = new Vector(Math.cos(angle), Math.sin(angle));

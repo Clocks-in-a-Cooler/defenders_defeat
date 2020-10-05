@@ -7,6 +7,7 @@ class Tower extends Entity {
         this.last_fired = 0;
         this.target     = null;
         this.sprite     = sprites.basic_tower;
+        this.damage     = 3;
     }
     
     update(lapse) {
@@ -37,8 +38,11 @@ class Tower extends Entity {
         
         this.last_fired += lapse;
         
-        if (this.last_fired >= this.cooldown && this.target != null) {
+        if (this.target != null) {
             this.orient();
+        }
+        
+        if (this.last_fired >= this.cooldown && this.target != null) {
             this.fire();
             this.last_fired = 0;
         }
@@ -78,13 +82,13 @@ class Tower extends Entity {
             -[x] create a bullet and add it to the map's entities array
         */
         
-        this.map.entities.push(new Bullet(
+        this.map.entities.unshift(new Bullet(
             this.get_center(), // pos
             this.orientation, // angle
             this.map, // map
             Unit, // targetable
             "firebrick", // colour
-            3 // damage
+            this.damage // damage
         ));
     }
     
