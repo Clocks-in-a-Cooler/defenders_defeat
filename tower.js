@@ -2,10 +2,11 @@ class Tower extends Entity {
     constructor(position, map) {
         // to recap: pos(ition), size, orientation, map
         // the tower should start off facing up, so -90 degrees or PI / 2 radians
-        super(position.plus(new Vector(0.1, 0.1)), new Vector(0.8, 0.8), -Math.PI / 2, map);
+        super(position, new Vector(1, 1), -Math.PI / 2, map);
         
         this.last_fired = 0;
         this.target     = null;
+        this.sprite     = sprites.basic_tower;
     }
     
     update(lapse) {
@@ -92,6 +93,14 @@ class Tower extends Entity {
         if (this.target == null) return;
         
         this.orientation = this.target.pos.minus(this.pos).angle;
+    }
+    
+    draw(camera) {
+        // first draw the base, then draw the sprite itself
+        var screen_coords = camera.get_screen_coords(this.pos);
+        camera.cxt.drawImage(sprites.tower_base, screen_coords.x, screen_coords.y, camera.scale, camera.scale);
+        
+        super.draw(camera);
     }
 }
 

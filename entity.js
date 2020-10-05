@@ -45,10 +45,24 @@ class Entity {
     draw(camera) {
         // override in child classes
         
-        // draw a rectangle. yeah, boring. i know... i know...
-        var screen_coords = camera.get_screen_coords(this.pos);
+        if (!this.sprite) {
+            // draw a rectangle. yeah, boring. i know... i know...
+            // hopefully this can be removed soon
+            var screen_coords = camera.get_screen_coords(this.pos);
 
-        camera.cxt.fillStyle = this.colour;
-        camera.cxt.fillRect(screen_coords.x, screen_coords.y, this.size.x * camera.scale, this.size.y * camera.scale);
+            camera.cxt.fillStyle = this.colour;
+            camera.cxt.fillRect(screen_coords.x, screen_coords.y, this.size.x * camera.scale, this.size.y * camera.scale);
+        } else {
+            var screen_coords = camera.get_screen_coords(this.get_center());
+            camera.cxt.save();
+            camera.cxt.translate(screen_coords.x, screen_coords.y);
+            camera.cxt.rotate(this.orientation);
+            camera.cxt.drawImage(this.sprite,
+                -this.size.x / 2 * camera.scale, -this.size.y / 2 * camera.scale,
+                this.size.x * camera.scale, this.size.y * camera.scale
+            );
+            
+            camera.cxt.restore();
+        }
     }
 }

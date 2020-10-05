@@ -10,6 +10,7 @@
             <canvas></canvas>
             <div id="side-panel"></div>
         </div>
+        <script src="assets.js"></script>
         <script src="vector.js"></script>
         <script src="map.js"></script>
         <script src="camera.js"></script>
@@ -28,7 +29,7 @@
             // for testing only
             // replace with an actual engine!
             function animate() {
-                map.update(50);
+                map.update(15);
                 camera.draw();
                 requestAnimationFrame(animate);
             }

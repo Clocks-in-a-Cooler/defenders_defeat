@@ -33,3 +33,12 @@
         -[x] hover over a tower to see its stats
     -[ ] rewards for destroying towers?
     -[ ] rewards for completing level with extra troops
+-[ ] sprites!
+    -[ ] tower sprites
+        -[ ] tower base
+        -[ ] basic tower
+    -[ ] bullet sprites
+        -[ ] basic bullet
+    -[ ] unit sprites
+        -[ ] basic ground unit
+    -[ ] background/tile sprites

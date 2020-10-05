@@ -3,10 +3,13 @@ class Bullet extends Entity {
     constructor(pos, angle, map, targetable, colour = "darkorange", damage = 4) {
         super(pos, new Vector(0.25, 0.25), angle, map);
         
+        this.colour = colour;
         this.motion = new Vector(Math.cos(angle), Math.sin(angle));
         
         // for towers, set targetable as Unit
         this.targetable = targetable;
+        
+        this.sprite = sprites.basic_bullet;
     }
 
     update(lapse) {
