@@ -9,7 +9,8 @@ class Bullet extends Entity {
         // for towers, set targetable as Unit
         this.targetable = targetable;
         
-        this.sprite = sprites.basic_bullet;
+        this.sprite   = sprites.basic_bullet;
+        this.lifetime = this.max_lifetime;
     }
 
     update(lapse) {
@@ -19,6 +20,9 @@ class Bullet extends Entity {
         this.check_collisions((entity) => {
             return entity instanceof this.targetable && entity.active;
         });
+        
+        this.lifetime -= lapse;
+        this.active    = this.lifetime > 0;
     }
 
     // no need to override Entity.collision(other)
@@ -30,3 +34,5 @@ class Bullet extends Entity {
 
 Bullet.prototype.damage = 4;
 Bullet.prototype.speed  = 0.005;
+
+Bullet.prototype.max_lifetime = 2000;

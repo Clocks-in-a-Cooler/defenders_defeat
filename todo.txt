@@ -1,7 +1,12 @@
 -[ ] menus!
     -[ ] main
+        -[ ] options: PLAY (to level select), CREDITS
     -[ ] level select
+        -[ ] select a level to start it
+        -[ ] progression? complete this level to start the next one?
     -[ ] pause
+        -[ ] engine handles press ESC for pause menu
+        -[ ] options: RESUME, QUIT, OPTIONS
     -[ ] level complete/failure
 -[ ] level difficulty
     -[ ] different tower types?
@@ -20,12 +25,16 @@
             -[ ] can destroy towers?
     -[ ] towers
         -[x] basic tower (targets both air and ground)
+        -[ ] homing ground tower -- fires homing bullets. longer cooldown, but higher damage. larger (2 * 2 size)
         * air-targeting towers should focus more on accuracy and shots/sec, since air units are faster and harder to hit but weaker
         * ground-targeting towers should focus more on damage/shot, since ground units are slower but stronger and follow the path
         -[ ] bullets
+            -[ ] homing bullets
             -[ ] laser beams?
             -[ ] different bullet types?
 -[ ] miscellaneous
+    -[ ] an actual game engine, please.
+        -[ ] handles starting a level, pausing and quiting to main menu, etc.
     -[ ] unit builder/selector
     -[x] camera zoom/panning
         -[x] scroll wheel to zoom
@@ -35,10 +44,39 @@
     -[ ] rewards for completing level with extra troops
 -[ ] sprites!
     -[ ] tower sprites
-        -[ ] tower base
-        -[ ] basic tower
+        -[x] tower base
+        -[x] basic tower
     -[ ] bullet sprites
-        -[ ] basic bullet
+        -[x] basic bullet
     -[ ] unit sprites
         -[ ] basic ground unit
     -[ ] background/tile sprites
+
+possible fonts
+- acherus militant  https://www.fontsquirrel.com/fonts/acherus-militant?filter%5Blicense%5D%5B0%5D=web
+- akashi            https://www.fontsquirrel.com/fonts/akashi?filter%5Blicense%5D%5B0%5D=web
+- air america       https://www.fontsquirrel.com/fonts/air-america?filter%5Blicense%5D%5B0%5D=web
+- archery black     https://www.fontsquirrel.com/fonts/SF-Archery-Black?filter%5Blicense%5D%5B0%5D=web
+- atomic age        https://www.fontsquirrel.com/fonts/atomic-age?filter%5Blicense%5D%5B0%5D=web
+- binaria           https://www.fontsquirrel.com/fonts/binaria?filter%5Blicense%5D%5B0%5D=web
+- cuprum            https://www.fontsquirrel.com/fonts/cuprum?filter%5Blicense%5D%5B0%5D=web
+- dekar             https://www.fontsquirrel.com/fonts/dekar?filter%5Blicense%5D%5B0%5D=web
+- ergonomique       https://www.fontsquirrel.com/fonts/ergonomique?filter%5Blicense%5D%5B0%5D=web
+- existence light   https://www.fontsquirrel.com/fonts/Existence-Light?filter%5Blicense%5D%5B0%5D=web
+- exo condensed     https://www.fontsquirrel.com/fonts/exo-condensed-expanded?filter%5Blicense%5D%5B0%5D=web
+- futura renner     https://www.fontsquirrel.com/fonts/futura-renner?filter%5Blicense%5D%5B0%5D=web
+- geo               https://www.fontsquirrel.com/fonts/Geo?filter%5Blicense%5D%5B0%5D=web
+- germania one      https://www.fontsquirrel.com/fonts/germania-one?filter%5Blicense%5D%5B0%5D=web
+- greyscale basic   https://www.fontsquirrel.com/fonts/Greyscale-Basic?filter%5Blicense%5D%5B0%5D=web
+- grov condensed    https://www.fontsquirrel.com/fonts/Grov-Condensed-AB?filter%5Blicense%5D%5B0%5D=web
+- gputeks           https://www.fontsquirrel.com/fonts/gputeks?filter%5Blicense%5D%5B0%5D=web
+- hammersmith one   https://www.fontsquirrel.com/fonts/hammersmith-one?filter%5Blicense%5D%5B0%5D=web
+- inder             https://www.fontsquirrel.com/fonts/inder?filter%5Blicense%5D%5B0%5D=web
+- juice             https://www.fontsquirrel.com/fonts/Juice?filter%5Blicense%5D%5B0%5D=web
+- laconic           https://www.fontsquirrel.com/fonts/laconic?filter%5Blicense%5D%5B0%5D=web
+- meccanica         https://www.fontsquirrel.com/fonts/meccanica?filter%5Blicense%5D%5B0%5D=web
+- minotaur          https://www.fontsquirrel.com/fonts/Minotaur?filter%5Blicense%5D%5B0%5D=web
+- oxanium           https://www.fontsquirrel.com/fonts/oxanium?filter%5Blicense%5D%5B0%5D=web
+- quantico          https://www.fontsquirrel.com/fonts/quantico?filter%5Blicense%5D%5B0%5D=web
+- telegrama         https://www.fontsquirrel.com/fonts/Telegrama?filter%5Blicense%5D%5B0%5D=web
+- versa             https://www.fontsquirrel.com/fonts/versa?filter%5Blicense%5D%5B0%5D=web

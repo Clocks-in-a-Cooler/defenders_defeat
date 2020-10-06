@@ -141,12 +141,11 @@ function mouse_move(evt) {
         // update the information in the side panel, if the mouse has moved to another tile
         var new_tile = this.get_map_coords(new Vector(evt.offsetX, evt.offsetY)).apply(Math.floor);
         if (!new_tile.matches(this.last_tile)) {
+            document.getElementById("side-panel").innerHTML = "hovering over (" + new_tile.x + ", " + new_tile.y + ")";
             // display tile information, if there is any. for now, just display the coordinates.
             this.spotlight = map.entity_at(new_tile);
             display_info(this.spotlight);
-            /*
-            document.getElementById("side-panel").innerHTML = "hovering over (" + new_tile.x + ", " + new_tile.y + ")";
-            this.last_tile = new_tile; */
+            this.last_tile = new_tile;
         }
     }
 }
@@ -161,12 +160,12 @@ function wheel(evt) {
 function display_info(entity) {
     var side_panel = document.getElementById("side-panel");
     if (!entity || !entity.range) {
-        side_panel.innerHTML = "";
+        side_panel.innerHTML += "";
         return;
     }
     
     // it's going to be a tower, for sure
-    side_panel.innerHTML = "fire rate: " + 1000 / entity.cooldown + " shots/sec" + "<br />" +
+    side_panel.innerHTML += "<br />fire rate: " + 1000 / entity.cooldown + " shots/sec" + "<br />" +
         "damage: " + entity.damage + "<br />" +
         "range: " + entity.range + " tiles";
 }

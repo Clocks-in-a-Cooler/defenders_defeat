@@ -53,6 +53,13 @@ class Unit extends Entity {
         var new_direction = this.map.tile_at(this.pos);
         this.facing       = new_direction == "entrance" ? this.facing : new_direction;
         this.orientation  = this.get_orientation();
+        
+        if (this.facing == "exit") {
+            // for now
+            console.log("reached the exit!");
+            // probably reward the player or something
+            this.active = false;
+        }
     }
     
     draw(camera) {
@@ -77,6 +84,8 @@ class Unit extends Entity {
                 return 0;
             case "west":
                 return Math.PI;
+            default:
+                return this.orientation;
         }
     }
     
