@@ -3,6 +3,7 @@ html, body {
     width: 100%; height: 100%;
     top: 0; left: 0;
     margin: 0; border: 0; padding: 0;
+    font-family: "Arial", "Helvetica", sans-serif;
 }
 
 div {
@@ -33,17 +34,80 @@ div#side-panel {
     margin-left: 577px;
 }
 
+.menu-wrapper {
+    width: 100%; height: 100%;
+    position: absolute;
+    margin: 0; border: 0; padding: 0;
+}
+
+.overlay {
+    width: 100%; height: 100%;
+    background-color: white;
+    opacity: 0.8;
+}
+
 .menu {
     position: absolute;
-    min-width: 250px;
-    min-height: 250px;
+    display: block;
     top: 0; left: 0; right: 0; bottom: 0;
     margin: auto;
     border: 1px solid black;
-    padding: 5px;
+    z-index: 1;
 }
 
 button {
-    min-height: 1.5em;
-    min-width: 90px;
+    /* for now, while we decide on the final look and feel of the game... */
+    display: block;
+    min-height: 40px; min-width: 90px;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    margin-top: 5px;
+    border: 1px solid rgb(64, 64, 64);
+    border-radius: 20px;
+    color: rgb(64, 64, 64);
+    background-color: white;
+    transition: border-color .2s, background-color .2s, color.2s;
+}
+
+button:hover {
+    border-color: black;
+    color: black;
+    transition: border-color .2s, background-color .2s, color.2s;
+}
+
+button.menu-button {
+    
+}
+
+button.menu-button:hover {
+    
+}
+
+div#main-menu {
+    width: 300px; height: 300px;
+}
+
+h1 {
+    text-align: center;
+}
+
+div#level-select {
+    width: 300px; height: 500px;
+}
+
+div#credits {
+    width: 400px; height: 400px;
+}
+
+div#pause-menu {
+    
+}
+
+button.level-select-button {
+    display: inline-block;
+    width: 90px; height: 90px;
+}
+
+button.level-select-button:hover {
+    
 }

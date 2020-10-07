@@ -64,6 +64,9 @@ var Engine = {
 var menus = {
     main: {
         id: "main-menu",
+        contents: [
+            { "h1": "Defender's Defeat" },
+        ],
         buttons: {
             play: function() {
                 // show level select
@@ -124,7 +127,12 @@ function create_menu(data) {
         menu.appendChild(button_elt);
     });
     
-    return menu;
+    var menu_wrapper_elt = create_element("div", "menu-wrapper");
+    var overlay_elt      = create_element("div", "overlay");
+    
+    menu_wrapper_elt.appendChild(overlay_elt);
+    menu_wrapper_elt.appendChild(menu);
+    return menu_wrapper_elt;
 }
 
 function create_element(tag, class_name = "", id = "", inner_html = "") {
