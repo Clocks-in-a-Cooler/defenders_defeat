@@ -65,6 +65,23 @@ class Map {
         return null;
     }
     
+    add_tower(tower) {
+        /*
+            fail to add tower if:
+            - (tower.pos) is outside of the map
+            - there is another entity at (tower.pos)
+            - the tile at (tower.pos) is not blank
+        */
+        if (
+            tower.pos.x < 0 || tower.pos.x >= this.width || tower.pos.y < 0 || tower.pos.y >= this.height ||
+            this.entity_at(tower.pos) || this.tile_at(tower.pos) != "blank"
+        ) {
+            throw ("cannot add tower at " + tower.pos.string);
+        }
+        
+        this.entities.push(tower);
+    }
+    
     tile_at(pos) {
         pos = pos.apply(Math.floor);
         

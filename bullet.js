@@ -15,14 +15,14 @@ class Bullet extends Entity {
 
     update(lapse) {
         this.pos = this.pos.plus(this.motion.times(lapse * this.speed));
+        
+        this.lifetime -= lapse;
+        this.active    = this.lifetime > 0;
 
         // check for collisions
         this.check_collisions((entity) => {
             return entity instanceof this.targetable && entity.active;
         });
-        
-        this.lifetime -= lapse;
-        this.active    = this.lifetime > 0;
     }
 
     // no need to override Entity.collision(other)
@@ -32,7 +32,6 @@ class Bullet extends Entity {
     }
 }
 
-Bullet.prototype.damage = 4;
-Bullet.prototype.speed  = 0.005;
+Bullet.prototype.speed = 0.005;
 
 Bullet.prototype.max_lifetime = 2000;

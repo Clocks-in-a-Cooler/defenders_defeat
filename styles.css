@@ -12,7 +12,7 @@ div {
 }
 
 div#wrapper {
-    width: 727px; height: 575px;
+    width: 827px; height: 575px;
     border: 1px solid black;
     margin: auto;
 }
@@ -28,7 +28,22 @@ canvas {
 div#side-panel {
     position: absolute;
     top: 0; left: 0;
-    width: 150px; height: 575px;
+    width: 250px; height: 575px;
     margin: 0; border: 0;
     margin-left: 577px;
+}
+
+.menu {
+    position: absolute;
+    min-width: 250px;
+    min-height: 250px;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+button {
+    min-height: 1.5em;
+    min-width: 90px;
 }

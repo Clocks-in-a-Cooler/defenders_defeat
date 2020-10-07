@@ -8,6 +8,7 @@
         -[ ] engine handles press ESC for pause menu
         -[ ] options: RESUME, QUIT, OPTIONS
     -[ ] level complete/failure
+    -[ ] style all the menus!
 -[ ] level difficulty
     -[ ] different tower types?
     -[ ] a crude tower-building ai?

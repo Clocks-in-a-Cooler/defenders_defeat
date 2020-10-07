@@ -2,6 +2,7 @@ class Vector {
     constructor(x, y) {
         this.x = x; this.y = y;
         
+        this.string   = "(" + x + ", " + y + ")";
         this.length   = Math.hypot(this.x, this.y);
         this.angle    = (function(x, y) {
             var hyp   = Math.hypot(x, y);

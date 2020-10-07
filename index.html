@@ -11,6 +11,7 @@
             <div id="side-panel"></div>
         </div>
         <script src="assets.js"></script>
+        <script src="engine.js"></script>
         <script src="vector.js"></script>
         <script src="map.js"></script>
         <script src="camera.js"></script>
@@ -20,8 +21,6 @@
         <script src="tower.js"></script>
         <script>
             const map    = new Map(TEST_MAP);
-            const canvas = document.querySelector("canvas");
-            canvas.width = canvas.height = 575;
             const camera = new Camera(canvas.getContext("2d"), map);
             
             camera.register_event_handlers();
@@ -35,24 +34,6 @@
             }
             
             requestAnimationFrame(animate);
-            /*
-            // for sending keyboard events to the canvas
-            function handler(evt) {
-                console.log(evt.code);
-                console.log("received a key event");
-            }
-            
-            var elt = document.querySelector("canvas");
-            elt.setAttribute("tabindex", 0);
-            elt.focus();
-            elt.addEventListener("keydown", handler);
-            */
-            
-            function test_tower() {
-                var t = new Tower(new Vector(39, 3), map);
-                map.entities.push(t);
-                map.entities.push(new Unit(map));
-            }
         </script>
     </body>
 </html>
