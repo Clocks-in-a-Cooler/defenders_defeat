@@ -72,11 +72,15 @@ class Map {
             - there is another entity at (tower.pos)
             - the tile at (tower.pos) is not blank
         */
-        if (
-            tower.pos.x < 0 || tower.pos.x >= this.width || tower.pos.y < 0 || tower.pos.y >= this.height ||
-            this.entity_at(tower.pos) || this.tile_at(tower.pos) != "blank"
-        ) {
-            throw ("cannot add tower at " + tower.pos.string);
+        for (var x = tower.pos.x; x < tower.pos.x + tower.size.x; x++) {
+            for (var y = tower.pos.y; y < tower.pos.y + tower.size.y; y++) {
+                if (
+                    x < 0 || x >= this.width || y < 0 || y >= this.height ||
+                    this.entity_at(new Vector(x, y)) || this.tile_at(new Vector(x, y)) != "blank"
+                ) {
+                    throw ("cannot add tower at " + tower.pos.string);
+                }
+            }
         }
         
         this.entities.push(tower);

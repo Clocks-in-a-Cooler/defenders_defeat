@@ -44,3 +44,23 @@ class Vector {
         return Math.hypot(this.x - other.x, this.y - other.y);
     }
 }
+
+function get_rotate_dir(start, end) {
+    // find the direction from start to end
+    // -1 for counterclockwise, 1 for clockwise
+    start = reduce_angle(start), end = reduce_angle(end);
+    
+    return (end - start) > Math.PI ? -1 : 1;
+}
+
+function reduce_angle(angle) {
+    // returns the same angle, but now between 2PI and 0
+    while (angle > Math.PI * 2) {
+        angle -= Math.PI * 2;
+    }
+    while (angle < 0) {
+        angle += Math.PI * 2;
+    }
+    
+    return angle;
+}

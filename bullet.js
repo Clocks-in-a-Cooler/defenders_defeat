@@ -1,16 +1,14 @@
 class Bullet extends Entity {
     // to make a new type of bullet, just subclass this one!
-    constructor(pos, angle, map, targetable, colour = "darkorange", damage = 4) {
+    constructor(pos, angle, map, targetable, damage = 4) {
         super(pos.minus(new Vector(0.125, 0.125)), new Vector(0.25, 0.25), angle, map);
         
-        this.colour = colour;
-        this.motion = new Vector(Math.cos(angle), Math.sin(angle));
-        
+        this.motion     = new Vector(Math.cos(angle), Math.sin(angle));
+        this.damage     = damage;
         // for towers, set targetable as Unit
         this.targetable = targetable;
-        
-        this.sprite   = sprites.basic_bullet;
-        this.lifetime = this.max_lifetime;
+        this.sprite     = sprites.basic_bullet;
+        this.lifetime   = this.max_lifetime;
     }
 
     update(lapse) {

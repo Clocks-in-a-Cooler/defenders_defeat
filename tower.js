@@ -7,6 +7,7 @@ class Tower extends Entity {
         this.last_fired = 0;
         this.target     = null;
         this.sprite     = sprites.basic_tower;
+        this.base       = sprites.tower_base;
         this.damage     = 3;
     }
     
@@ -87,7 +88,6 @@ class Tower extends Entity {
             this.orientation, // angle
             this.map, // map
             Unit, // targetable
-            "firebrick", // colour
             this.damage // damage
         ));
     }
@@ -102,7 +102,7 @@ class Tower extends Entity {
     draw(camera) {
         // first draw the base, then draw the sprite itself
         var screen_coords = camera.get_screen_coords(this.pos);
-        camera.cxt.drawImage(sprites.tower_base, screen_coords.x, screen_coords.y, camera.scale, camera.scale);
+        camera.cxt.drawImage(this.base, screen_coords.x, screen_coords.y, camera.scale * this.size.x, camera.scale * this.size.y);
         
         super.draw(camera);
     }
