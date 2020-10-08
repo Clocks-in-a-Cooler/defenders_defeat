@@ -4,11 +4,14 @@ class Tower extends Entity {
         // the tower should start off facing up, so -90 degrees or PI / 2 radians
         super(position, new Vector(1, 1), -Math.PI / 2, map);
         
-        this.last_fired = 0;
-        this.target     = null;
-        this.sprite     = sprites.basic_tower;
-        this.base       = sprites.tower_base;
-        this.damage     = 3;
+        this.base_pos     = position;
+        this.last_fired   = 0;
+        this.recoil_speed = 2 * Math.PI / this.cooldown;
+        this.recoil       = 0;
+        this.target       = null;
+        this.sprite       = sprites.basic_tower;
+        this.base         = sprites.tower_base;
+        this.damage       = 3;
     }
     
     update(lapse) {
@@ -38,6 +41,12 @@ class Tower extends Entity {
         }
         
         this.last_fired += lapse;
+        
+        var recoil_time = Math.min(this.last_fired * 1.5, this.cooldown);
+        var recoil_dist = this.size.x / 8;
+        this.recoil     = recoil_dist * (Math.cos(this.recoil_speed * recoil_time) - 1);
+        
+        this.pos = this.base_pos.plus(new Vector(this.recoil * Math.cos(this.orientation), this.recoil * Math.sin(this.orientation)));
         
         if (this.target != null) {
             this.orient();
@@ -101,7 +110,7 @@ class Tower extends Entity {
     
     draw(camera) {
         // first draw the base, then draw the sprite itself
-        var screen_coords = camera.get_screen_coords(this.pos);
+        var screen_coords = camera.get_screen_coords(this.base_pos);
         camera.cxt.drawImage(this.base, screen_coords.x, screen_coords.y, camera.scale * this.size.x, camera.scale * this.size.y);
         
         super.draw(camera);

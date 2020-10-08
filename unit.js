@@ -96,4 +96,4 @@ class Unit extends Entity {
 }
 
 Unit.prototype.speed      = 0.0015; // 1.5 tiles per second
-Unit.prototype.max_health = 25; // not particular durable. should get the job done
+Unit.prototype.max_health = 17; // not particular durable. should get the job done
