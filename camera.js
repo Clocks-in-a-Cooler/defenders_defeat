@@ -57,8 +57,6 @@ class Camera {
                 if (this.map.grid[y] == undefined) continue;
                 var screen_coords = this.get_screen_coords(new Vector(x, y));
                 switch (this.map.grid[y][x]) {
-                    case "blank":
-                        break;
                     case "west":
                     case "east":
                     case "north":

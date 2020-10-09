@@ -46,8 +46,6 @@ class Tower extends Entity {
         var recoil_dist = this.size.x / 8;
         this.recoil     = recoil_dist * (Math.cos(this.recoil_speed * recoil_time) - 1);
         
-        this.pos = this.base_pos.plus(new Vector(this.recoil * Math.cos(this.orientation), this.recoil * Math.sin(this.orientation)));
-        
         if (this.target != null) {
             this.orient();
         }
@@ -110,10 +108,14 @@ class Tower extends Entity {
     
     draw(camera) {
         // first draw the base, then draw the sprite itself
-        var screen_coords = camera.get_screen_coords(this.base_pos);
+        var screen_coords = camera.get_screen_coords(this.pos);
         camera.cxt.drawImage(this.base, screen_coords.x, screen_coords.y, camera.scale * this.size.x, camera.scale * this.size.y);
         
+        this.pos = this.base_pos.plus(new Vector(this.recoil * Math.cos(this.orientation), this.recoil * Math.sin(this.orientation)));
+        
         super.draw(camera);
+        
+        this.pos = this.base_pos;
     }
 }
 

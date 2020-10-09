@@ -71,6 +71,7 @@ var menus = {
             play: function() {
                 // show level select
                 console.log("playing game...");
+                Engine.show_menu(menus.level_select);
             },
             credits: function() {
                 // show credits menu
@@ -95,10 +96,57 @@ var menus = {
     
     level_select: {
         id: "level-select",
+        contents: [
+            { "h1": "Level select" },
+        ],
         buttons: {
-            
+            "level 1": {
+                class_name: "level-select-button",
+                id: "",
+                onclick: function() {
+                    console.log("selected level 1.");
+                },
+            },
+            "level 2": {
+                class_name: "level-select-button",
+                id: "",
+                disabled: true,
+                onclick: function() {
+                    console.log("selected level 2.");
+                }
+            },
+            "level 3": {
+                class_name: "level-select-button",
+                id: "",
+                disabled: true,
+                onclick: function() {
+                    console.log("selected level 3.");
+                }
+            },
+            "test level": {
+                class_name: "level-select-button",
+                id: "",
+                onclick: function() {
+                    // load the demo level i've always had
+                }
+            },
+            "back": function() {
+                Engine.show_menu(menus.main);
+            }
         },
     },
+    
+    pause: {
+        id: "pause-menu",
+        buttons: {
+            "resume": function() {
+                console.log("unpausing...");
+            },
+            "back to menu": function() {
+                console.log("selected to go to main menu.");
+            }
+        }
+    }
 };
 
 function create_menu(data) {
@@ -123,6 +171,10 @@ function create_menu(data) {
             // the button object also contains the class name
             button_elt = create_element("button", button.class_name, button.id, name);
             button_elt.addEventListener("click", button.onclick);
+            
+            if (button.disabled) {
+                button_elt.disabled = true;
+            }
         }
         menu.appendChild(button_elt);
     });

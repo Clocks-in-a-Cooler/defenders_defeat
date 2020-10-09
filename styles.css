@@ -53,6 +53,8 @@ div#side-panel {
     margin: auto;
     border: 1px solid black;
     z-index: 1;
+    background-color: white;
+    opacity: 1;
 }
 
 button {
@@ -105,9 +107,15 @@ div#pause-menu {
 
 button.level-select-button {
     display: inline-block;
+    margin-left: 5px;
     width: 90px; height: 90px;
 }
 
 button.level-select-button:hover {
     
+}
+
+button.level-select-button:disabled {
+    background-image: url("sprites/lock.svg");
+    opacity: 0.5;
 }

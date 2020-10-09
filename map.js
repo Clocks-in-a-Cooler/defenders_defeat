@@ -55,7 +55,7 @@ class Map {
     
     entity_at(pos) {
         var entities = this.entities.filter(entity => {
-            return entity.collides(new Entity(pos, new Vector(1, 1), 0, this));
+            return entity.collides(new Entity(pos, new Vector(1, 1), 0, this)) && !(entity instanceof Bullet);
         });
         
         if (entities.length > 0) {
@@ -76,7 +76,7 @@ class Map {
             for (var y = tower.pos.y; y < tower.pos.y + tower.size.y; y++) {
                 if (
                     x < 0 || x >= this.width || y < 0 || y >= this.height ||
-                    this.entity_at(new Vector(x, y)) || this.tile_at(new Vector(x, y)) != "blank"
+                    this.entity_at(new Vector(x, y)) || this.tile_at(new Vector(x, y)) != undefined
                 ) {
                     throw ("cannot add tower at " + tower.pos.string);
                 }
@@ -89,15 +89,14 @@ class Map {
     tile_at(pos) {
         pos = pos.apply(Math.floor);
         
-        if (this.grid[pos.y] == undefined) return "blank";
+        if (this.grid[pos.y] == undefined) return;
         
-        return this.grid[pos.y][pos.x] || "blank";
+        return this.grid[pos.y][pos.x];
     }
 }
 
 // tradition: using ASCII to represent the map
 const TILE_KEY = {
-    " ": "blank",
     ">": "west",
     "<": "east",
     "^": "north",

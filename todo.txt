@@ -1,8 +1,8 @@
 -[ ] menus!
-    -[ ] main
-        -[ ] options: PLAY (to level select), CREDITS
+    -[x] main
+        -[x] options: PLAY (to level select), CREDITS
     -[ ] level select
-        -[ ] select a level to start it
+        -[x] select a level to start it
         -[ ] progression? complete this level to start the next one?
     -[ ] pause
         -[ ] engine handles press ESC for pause menu
