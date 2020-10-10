@@ -14,6 +14,7 @@
     -[ ] a crude tower-building ai?
 -[ ] game content
     -[ ] levels
+        -[ ] winning/losing mechanism
     -[ ] units
         -[x] basic ground unit
         -[ ] basic air unit
@@ -43,6 +44,7 @@
         -[x] hover over a tower to see its stats
     -[ ] rewards for destroying towers?
     -[ ] rewards for completing level with extra troops
+    -[ ] map editor?
 -[ ] sprites!
     -[ ] tower sprites
         -[x] tower base

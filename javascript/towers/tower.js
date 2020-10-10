@@ -5,7 +5,7 @@ class Tower extends Entity {
         super(position, new Vector(1, 1), -Math.PI / 2, map);
         
         this.base_pos     = position;
-        this.last_fired   = 0;
+        this.last_fired   = this.cooldown;
         this.recoil_speed = 2 * Math.PI / this.cooldown;
         this.recoil       = 0;
         this.target       = null;

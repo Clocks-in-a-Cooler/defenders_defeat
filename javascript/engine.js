@@ -146,6 +146,64 @@ var menus = {
                 console.log("selected to go to main menu.");
             }
         }
+    },
+    
+    win_level: {
+        id: "win-menu",
+        buttons: {
+            "level select": {
+                class_name: "inline-button",
+                id: "",
+                onclick: function() {
+                    console.log("selected to go to level select.");
+                }
+            },
+            
+            "back to menu": {
+                class_name: "inline-button",
+                id: "",
+                onclick: function() {
+                    console.log("selected to go to main menu.");
+                }
+            },
+            
+            "next": {
+                class_name: "inline-button",
+                id: "",
+                onclick: function() {
+                    console.log("selected to go to next level.");
+                }
+            },
+        },
+    },
+    
+    lose_level: {
+        id: "lose-menu",
+        buttons: {
+            "level select": {
+                class_name: "inline-button",
+                id: "",
+                onclick: function() {
+                    console.log("selected to go to level select.");
+                }
+            },
+            
+            "back to menu": {
+                class_name: "inline-button",
+                id: "",
+                onclick: function() {
+                    console.log("selected to go to main menu.");
+                }
+            },
+            
+            "retry": {
+                class_name: "inline-button",
+                id: "",
+                onclick: function() {
+                    console.log("selected to go to retry level.");
+                }
+            },
+        },
     }
 };
 

@@ -10,18 +10,30 @@
             <canvas></canvas>
             <div id="side-panel"></div>
         </div>
-        <script src="assets.js"></script>
-        <script src="engine.js"></script>
-        <script src="vector.js"></script>
-        <script src="map.js"></script>
-        <script src="camera.js"></script>
-        <script src="entity.js"></script>
-        <script src="bullet.js"></script>
-        <script src="homing_bullet.js"></script>
-        <script src="unit.js"></script>
-        <script src="tower.js"></script>
-        <script src="homing_sniper_tower.js"></script>
-        <script src="machine_gun_tower.js"></script>
+        <!-- order of script loading:
+            1. assets and engine
+            2. helpers: vector
+            3. data and rendering: map, level, and camera
+            4. entity base class
+            5. bullet base class and its children
+            6. unit base class and its children
+            7. tower base class and its children
+            
+            the javascript files will also be minified in this order.
+        -->
+        <script src="javascript/assets.js"></script>
+        <script src="javascript/engine.js"></script>
+        <script src="javascript/vector.js"></script>
+        <script src="javascript/map.js"></script>
+        <script src="javascript/camera.js"></script>
+        <script src="javascript/level.js"></script>
+        <script src="javascript/entity.js"></script>
+        <script src="javascript/bullets/bullet.js"></script>
+        <script src="javascript/bullets/homing_bullet.js"></script>
+        <script src="javascript/units/unit.js"></script>
+        <script src="javascript/towers/tower.js"></script>
+        <script src="javascript/towers/homing_sniper_tower.js"></script>
+        <script src="javascript/towers/machine_gun_tower.js"></script>
         <script>
             const map    = new Map(TEST_MAP);
             const camera = new Camera(canvas.getContext("2d"), map);
