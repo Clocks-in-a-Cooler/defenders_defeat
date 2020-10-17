@@ -163,7 +163,8 @@ function display_info(entity) {
     }
     
     // it's going to be a tower, for sure
-    side_panel.innerHTML += "<br />fire rate: " + 1000 / entity.cooldown + " shots/sec" + "<br />" +
-        "damage: " + entity.damage + "<br />" +
-        "range: " + entity.range + " tiles";
+    side_panel.innerHTML += "<br />fire rate: " + round(1000 / entity.cooldown) + " shots/sec" + "<br />" +
+        "damage: " + round(entity.damage) + "<br />" +
+        "range: " + round(entity.range) + " tiles" + "<br />" +
+        "inaccuracy: " + round(entity.inaccuracy * 180 / Math.PI) + " degrees";
 }

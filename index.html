@@ -8,7 +8,12 @@
     <body>
         <div id="wrapper">
             <canvas></canvas>
-            <div id="side-panel"></div>
+            <div id="side-panel">
+                <div id="tower-info"></div>
+                <div id="send-units">
+                    
+                </div>
+            </div>
         </div>
         <!-- order of script loading:
             1. assets and engine
@@ -49,6 +54,18 @@
             }
             
             requestAnimationFrame(animate);
+            
+            function have_fun() {
+                map.add_tower(new Tower(new Vector(39, 18), map));
+                map.add_tower(new Tower(new Vector(41, 19), map));
+                map.add_tower(new Tower(new Vector(39, 20), map));
+                map.add_tower(new Tower(new Vector(41, 21), map));
+                map.add_tower(new Machine_gun_tower(new Vector(5, 3), map));
+                
+                setInterval(() => map.entities.push(new Unit(map)), 1000);
+            }
+            
+            have_fun();
         </script>
     </body>
 </html>

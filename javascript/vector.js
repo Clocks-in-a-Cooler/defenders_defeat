@@ -64,3 +64,7 @@ function reduce_angle(angle) {
     
     return angle;
 }
+
+function round(number) {
+    return Math.floor(number * 10) / 10;
+}

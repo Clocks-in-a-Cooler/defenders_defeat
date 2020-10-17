@@ -6,12 +6,13 @@ class Tower extends Entity {
         
         this.base_pos     = position;
         this.last_fired   = this.cooldown;
-        this.recoil_speed = 2 * Math.PI / this.cooldown;
+        this.recoil_speed = Math.PI / this.cooldown;
         this.recoil       = 0;
         this.target       = null;
         this.sprite       = sprites.basic_tower;
         this.base         = sprites.tower_base;
         this.damage       = 3;
+        this.inaccuracy   = Math.PI / 36; // 5 degrees of inaccuracy, in either direction
     }
     
     update(lapse) {
@@ -42,9 +43,7 @@ class Tower extends Entity {
         
         this.last_fired += lapse;
         
-        var recoil_time = Math.min(this.last_fired * 1.5, this.cooldown);
-        var recoil_dist = this.size.x / 8;
-        this.recoil     = recoil_dist * (Math.cos(this.recoil_speed * recoil_time) - 1);
+        this.calculate_recoil();
         
         if (this.target != null) {
             this.orient();
@@ -54,6 +53,12 @@ class Tower extends Entity {
             this.fire();
             this.last_fired = 0;
         }
+    }
+    
+    calculate_recoil() {
+        var recoil_time = Math.min(this.last_fired * 1.5, this.cooldown);
+        var recoil_dist = this.size.x / 8;
+        this.recoil     = recoil_dist * (-Math.sin(this.recoil_speed * recoil_time));
     }
     
     collision(other) {
@@ -90,9 +95,11 @@ class Tower extends Entity {
             -[x] create a bullet and add it to the map's entities array
         */
         
+        var angle = this.orientation + Math.random() * this.inaccuracy * (Math.random() > 0.5 ? 1 : -1);
+        
         this.map.entities.unshift(new Bullet(
             this.get_center(), // pos
-            this.orientation, // angle
+            angle, // angle
             this.map, // map
             Unit, // targetable
             this.damage // damage

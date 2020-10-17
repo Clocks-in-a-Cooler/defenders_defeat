@@ -10,11 +10,16 @@
     -[ ] level complete/failure
     -[ ] style all the menus!
 -[ ] level difficulty
-    -[ ] different tower types?
     -[ ] a crude tower-building ai?
 -[ ] game content
     -[ ] levels
         -[ ] winning/losing mechanism
+            -[ ] win condition: destroy however many towers?
+            -[ ] win condition: how many units reach exit
+            -[ ] lose condition: run out of units
+            -[ ] lose condition: run out of time?
+        -[ ] unit deploying mechanism
+        -[ ] updating level mechanism
     -[ ] units
         -[x] basic ground unit
         -[ ] basic air unit
@@ -27,7 +32,9 @@
             -[ ] can destroy towers?
     -[ ] towers
         -[x] basic tower (targets both air and ground)
-        -[ ] homing ground tower -- fires homing bullets. longer cooldown, but higher damage. larger (2 * 2 size)
+        -[ ] different tower types?
+            -[x] homing ground tower -- fires homing bullets. longer cooldown, but higher damage. larger (2 * 2 size)
+            -[ ] bullet-spamming tower -- lower damage and range, higher rate of fire
         * air-targeting towers should focus more on accuracy and shots/sec, since air units are faster and harder to hit but weaker
         * ground-targeting towers should focus more on damage/shot, since ground units are slower but stronger and follow the path
         -[ ] bullets
@@ -45,6 +52,12 @@
     -[ ] rewards for destroying towers?
     -[ ] rewards for completing level with extra troops
     -[ ] map editor?
+    -[ ] look and feel
+        -[ ] pick a theme!
+        -[ ] CSS styling the menus
+        -[ ] CSS styling the buttons
+        -[ ] pick a font
+    -[x] towers have recoil when firing (needs refining)
 -[ ] sprites!
     -[ ] tower sprites
         -[x] tower base
