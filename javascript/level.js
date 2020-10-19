@@ -29,4 +29,8 @@ class Level {
     end() {
         
     }
+    
+    quit() {
+        this.camera.remove_event_handlers();
+    }
 }

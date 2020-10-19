@@ -117,7 +117,7 @@ div#credits {
 }
 
 div#pause-menu {
-    
+    width: 300px; height: 300px;
 }
 
 button.level-select-button {

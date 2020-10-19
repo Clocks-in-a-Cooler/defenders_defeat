@@ -6,10 +6,10 @@ var context  = canvas.getContext("2d");
 
 canvas.setAttribute("tabindex", 0);
 canvas.focus();
-canvas.onkeydown = function(evt) {
+addEventListener("keydown", function(evt) {
     // let's not deal with any "this" shenanigans
     Engine.key_pressed(evt);
-};
+});
 
 var Engine = {
     // classic!
@@ -40,6 +40,7 @@ var Engine = {
     resume: function() {
         if (this.current_level != null) {
             this.paused = false;
+            this.clear_menu();
             requestAnimationFrame(Engine.animate);
         } else {
             // this shouldn't run... but if it does
@@ -126,6 +127,7 @@ var menus = {
             "level 1": {
                 class_name: "level-select-button",
                 id: "",
+                disabled: true,
                 onclick: function() {
                     console.log("selected level 1.");
                 },
@@ -151,6 +153,9 @@ var menus = {
                 id: "",
                 onclick: function() {
                     // load the demo level i've always had
+                    // for now, the win condition and constraints are blank
+                    Engine.current_level = new Level(TEST_MAP, context, () => {}, {});
+                    Engine.resume();
                 }
             },
             "back": function() {
@@ -164,11 +169,11 @@ var menus = {
         buttons: {
             "resume": function() {
                 console.log("unpausing...");
-                Engine.clear_menu();
                 Engine.resume();
             },
             "back to menu": function() {
                 console.log("selected to go to main menu.");
+                Engine.current_level.quit();
                 Engine.current_level = null;
                 Engine.show_menu(menus.main);
             }
