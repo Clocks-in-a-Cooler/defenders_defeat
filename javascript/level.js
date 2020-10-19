@@ -1,7 +1,7 @@
 class Level {
-    constructor(plan, context, win_condition, contraints) {
+    constructor(plan, context, win_condition, constraints) {
         this.map           = new Map(plan);
-        this.camera        = new Camera(context, map);
+        this.camera        = new Camera(context, this.map);
         this.win_condition = win_condition;
         
         this.data = {
@@ -10,6 +10,10 @@ class Level {
         };
         
         this.unit_limit = constraints.unit_limit;
+        this.budget     = constraints.budget;
+        this.costs      = constraints.costs;
+        
+        this.camera.register_event_handlers();
     }
     
     add_data(key) {
@@ -20,5 +24,9 @@ class Level {
             // win the level
         }
         // the lose condition is if you run out of units or time or whatever, however the hell that works
+    }
+    
+    end() {
+        
     }
 }

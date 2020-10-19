@@ -20,24 +20,30 @@ var Engine = {
     last_time: null, paused: true,
     max_step: 20,
     animate: function(time) {
-        if (this.last_time == null) {
-            var lapse = 0;
-        } else {
-            lapse = time - this.last_time;
-        }
-        this.last_time = time;
+        var lapse        = Engine.last_time == null ? 0 : time - Engine.last_time;
+        Engine.last_time = time;
+        
+        if (Engine.paused) return;
         
         while (lapse > 0) {
-            var step = Math.min(this.max_step, lapse);
+            var step = Math.min(Engine.max_step, lapse);
             lapse   -= step;
             
-            current_level.map.update(step);
+            Engine.current_level.map.update(step);
         }
         
-        current_level.camera.draw();
+        Engine.current_level.camera.draw();
         
-        if (!this.paused) {
+        requestAnimationFrame(Engine.animate);
+    },
+    
+    resume: function() {
+        if (this.current_level != null) {
+            this.paused = false;
             requestAnimationFrame(Engine.animate);
+        } else {
+            // this shouldn't run... but if it does
+            console.log("attempted to start when there isn't a level!");
         }
     },
     
@@ -46,6 +52,15 @@ var Engine = {
             if (this.current_level == null) {
                 console.log("pressed pause key while there isn't a level running. ignored.");
                 return;
+            }
+            
+            this.paused = !this.paused; // toggle
+            // depends on what is going on...
+            if (this.paused) {
+                // show the pause menu
+                this.show_menu(menus.pause);
+            } else {
+                this.clear_menu();
             }
         }
     },
@@ -58,6 +73,14 @@ var Engine = {
             wrapper.removeChild(wrapper.lastChild);
         }
         wrapper.appendChild(menu_elt);
+    },
+    
+    clear_menu() {
+        var wrapper = document.getElementById("wrapper");
+        if (document.getElementsByClassName("menu").length > 0) {
+            // there is a menu present, remove it
+            wrapper.removeChild(wrapper.lastChild);
+        }
     }
 };
 
@@ -141,9 +164,13 @@ var menus = {
         buttons: {
             "resume": function() {
                 console.log("unpausing...");
+                Engine.clear_menu();
+                Engine.resume();
             },
             "back to menu": function() {
                 console.log("selected to go to main menu.");
+                Engine.current_level = null;
+                Engine.show_menu(menus.main);
             }
         }
     },

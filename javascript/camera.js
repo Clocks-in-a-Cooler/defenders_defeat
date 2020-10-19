@@ -139,9 +139,9 @@ function mouse_move(evt) {
         // update the information in the side panel, if the mouse has moved to another tile
         var new_tile = this.get_map_coords(new Vector(evt.offsetX, evt.offsetY)).apply(Math.floor);
         if (!new_tile.matches(this.last_tile)) {
-            document.getElementById("side-panel").innerHTML = "hovering over (" + new_tile.x + ", " + new_tile.y + ")";
+            document.getElementById("tower-info").innerHTML = "hovering over (" + new_tile.x + ", " + new_tile.y + ")";
             // display tile information, if there is any. for now, just display the coordinates.
-            this.spotlight = map.entity_at(new_tile);
+            this.spotlight = this.map.entity_at(new_tile);
             display_info(this.spotlight);
             this.last_tile = new_tile;
         }
@@ -156,14 +156,14 @@ function wheel(evt) {
 }
 
 function display_info(entity) {
-    var side_panel = document.getElementById("side-panel");
+    var tower_info_elt = document.getElementById("tower-info");
     if (!entity || !entity.range) {
-        side_panel.innerHTML += "";
+        tower_info_elt.innerHTML += "";
         return;
     }
     
     // it's going to be a tower, for sure
-    side_panel.innerHTML += "<br />fire rate: " + round(1000 / entity.cooldown) + " shots/sec" + "<br />" +
+    tower_info_elt.innerHTML += "<br />fire rate: " + round(1000 / entity.cooldown) + " shots/sec" + "<br />" +
         "damage: " + round(entity.damage) + "<br />" +
         "range: " + round(entity.range) + " tiles" + "<br />" +
         "inaccuracy: " + round(entity.inaccuracy * 180 / Math.PI) + " degrees";
